@@ -5,6 +5,7 @@ on:
       - closed
 jobs:
   build-push-site:
+    runs-on: ubuntu-latest
     if: ${{ (github.event.pull_request.merged == true) &&
       (contains(github.event.pull_request.labels.*.name, 'test')) }}
     steps:
