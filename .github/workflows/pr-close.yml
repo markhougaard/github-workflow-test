@@ -7,9 +7,6 @@ on:
     types:
       - closed
 
-permissions:
-  contents: write
-
 jobs:
   merge_pr:
     name: "PR Merged"
@@ -18,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
       - uses: actions/setup-node@v3
       - name: Build
         run: npm run build
