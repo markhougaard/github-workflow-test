@@ -29,7 +29,6 @@ jobs:
         if: contains(github.event.pull_request.labels.*.name, 'patch')
         run: npm --no-git-tag-version version patch -m "Release new patch version %s"
       - name: Git push version bump
-        run: git push origin main --force
-      - id: set-version
-        name: Output version change
+        run: git push origin
+      - name: Output version change
         run: npm pkg get version
