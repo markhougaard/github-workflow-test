@@ -1,13 +1,20 @@
-name: Run only when merging PRs with label named "test"
+name: Run only when merging PRs with label named "minor" or "major"
 on:
   pull_request:
     types:
       - closed
 jobs:
-  build-push-site:
+  major:
     runs-on: ubuntu-latest
     if: ${{ (github.event.pull_request.merged == true) &&
-      (contains(github.event.pull_request.labels.*.name, 'test')) }}
+      (contains(github.event.pull_request.labels.*.name, 'major')) }}
     steps:
-      - name: Run tests
-        run: echo running tests
+      - name: Publish major
+        run: echo major
+  minor:
+    runs-on: ubuntu-latest
+    if: ${{ (github.event.pull_request.merged == true) &&
+      (contains(github.event.pull_request.labels.*.name, 'minor')) }}
+    steps:
+      - name: Publish major
+        run: echo minor
