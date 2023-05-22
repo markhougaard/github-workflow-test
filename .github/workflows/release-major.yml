@@ -11,10 +11,3 @@ jobs:
     steps:
       - name: Publish major
         run: echo major
-  minor:
-    runs-on: ubuntu-latest
-    if: ${{ (github.event.pull_request.merged == true) &&
-      (contains(github.event.pull_request.labels.*.name, 'minor')) }}
-    steps:
-      - name: Publish major
-        run: echo minor
