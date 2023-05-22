@@ -20,6 +20,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-node@v3
+      - name: Build
+        run: npm run build
       - name: Apply version bump (major)
         if: contains(github.event.pull_request.labels.*.name, 'major')
         run: npm --no-git-tag-version version major -m "Release new major version %s"

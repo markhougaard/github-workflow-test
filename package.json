@@ -5,10 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "echo build",
-    "test": "echo test",
-    "preversion": "npm run test",
-    "version": "npm run build && git add .",
-    "postversion": "git push"
+    "test": "echo test"
   },
   "keywords": [],
   "author": "",
