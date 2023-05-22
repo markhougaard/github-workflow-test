@@ -17,6 +17,10 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
       - uses: actions/setup-node@v3
+      - name: Set git config
+        run: |
+          git config --global user.name 'MapsPeople A/S'
+          git config --global user.email 'mail@mapspeople.com'
       - name: Build
         run: npm run build
       - name: Apply version bump (major)
