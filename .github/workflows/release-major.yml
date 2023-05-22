@@ -5,6 +5,9 @@ on:
     types:
       - closed
 
+permissions:
+  contents: write
+
 jobs:
   major:
     runs-on: ubuntu-latest
