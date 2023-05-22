@@ -18,7 +18,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
           # scope: "@mapsindoors"
       - run: npm ci
-      - run: npm --no-git-tag-version version major
+      - run: npm --no-git-tag-version version major -m "Release new major version %s"
         # env:
         # NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
   minor:
