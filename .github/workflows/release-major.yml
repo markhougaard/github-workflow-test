@@ -1,13 +1,30 @@
 name: Run only when merging PRs with label named "minor" or "major"
+
 on:
   pull_request:
     types:
       - closed
+
 jobs:
   major:
     runs-on: ubuntu-latest
     if: ${{ (github.event.pull_request.merged == true) &&
       (contains(github.event.pull_request.labels.*.name, 'major')) }}
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+          # scope: "@mapsindoors"
+      - run: npm ci
+      - run: npm --no-git-tag-version version major
+        # env:
+        # NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+  minor:
+    runs-on: ubuntu-latest
+    if: ${{ (github.event.pull_request.merged == true) &&
+      (contains(github.event.pull_request.labels.*.name, 'minor')) }}
+    steps:
       - name: Publish major
-        run: echo major
+        run: echo minor
