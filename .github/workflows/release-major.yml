@@ -19,8 +19,8 @@ jobs:
           # scope: "@mapsindoors"
       - run: npm ci
       - run: npm --no-git-tag-version version major -m "Release new major version %s"
-        # env:
-        # NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
   minor:
     runs-on: ubuntu-latest
     if: ${{ (github.event.pull_request.merged == true) &&
