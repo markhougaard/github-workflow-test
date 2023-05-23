@@ -47,7 +47,3 @@ jobs:
       - name: Apply version bump (patch)
         if: contains(github.event.pull_request.labels.*.name, 'patch')
         run: npm --tag-version-prefix="test-v" version patch && git push --tags origin main
-
-
-
-npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git]
