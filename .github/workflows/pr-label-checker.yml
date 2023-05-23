@@ -1,4 +1,4 @@
-name: "Dev - PR Label Checker"
+name: "Pull Request Label Checker"
 on:
   pull_request:
     branches:
@@ -9,7 +9,7 @@ on:
       - unlabeled
 jobs:
   check_labels:
-    name: "Check PR Labels"
+    name: "Check Pull Requst Labels"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -19,4 +19,4 @@ jobs:
         with:
           mode: exactly
           count: 1
-          labels: "major, minor, patch"
+          labels: "major, minor, patch, premajor, preminor, prepatch, prerelease"
