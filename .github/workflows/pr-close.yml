@@ -6,6 +6,8 @@ on:
       - main
     types:
       - closed
+    paths:
+      - packages/components/**
 
 jobs:
   merge_pr:
