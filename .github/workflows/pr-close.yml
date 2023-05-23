@@ -16,8 +16,6 @@ jobs:
       token: ${{ secrets.PAT }}
     steps:
       - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.PAT }}
       - uses: actions/setup-node@v3
       - name: Build
         run: npm run build
@@ -27,7 +25,7 @@ jobs:
           git config --global user.email 'mail@mapspeople.com'
       - name: Apply version bump (major)
         if: contains(github.event.pull_request.labels.*.name, 'major')
-        run: npm --no-git-tag-version version major -m "Release new major version %s"
+        run: npm --tag-version-prefix="test-v" version major && git add . && git commit -m "Release new major version %s"
       - name: Apply version bump (minor)
         if: contains(github.event.pull_request.labels.*.name, 'minor')
         run: npm --no-git-tag-version version minor -m "Release new minor version %s"
@@ -36,7 +34,6 @@ jobs:
         run: npm --no-git-tag-version version patch -m "Release new patch version %s"
       - name: Git push version bump
         run: |
-          git add .
-          git push origin main --force
+          git push --tags origin main --force
       - name: Output version change
         run: npm pkg get version
