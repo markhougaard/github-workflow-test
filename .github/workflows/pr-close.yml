@@ -21,16 +21,33 @@ jobs:
         run: npm run build
       - name: Set git config
         run: |
-          git config --global user.name 'MapsPeople A/S'
-          git config --global user.email 'mail@mapspeople.com'
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - name: Apply version bump (major)
         if: contains(github.event.pull_request.labels.*.name, 'major')
-        run: npm --tag-version-prefix="test-v" version major && git push --tags origin main
+        run: npm --tag-version-prefix="test-v" version major -m 'Upgrade to major version %s' && git push --tags origin main
       - name: Apply version bump (minor)
         if: contains(github.event.pull_request.labels.*.name, 'minor')
-        run: npm --no-git-tag-version version minor -m "Release new minor version %s"
+        run: npm --tag-version-prefix="test-v" version minor && git push --tags origin main
       - name: Apply version bump (patch)
         if: contains(github.event.pull_request.labels.*.name, 'patch')
-        run: npm --no-git-tag-version version patch -m "Release new patch version %s"
-      - name: Output version change
-        run: npm pkg get version
+        run: npm --tag-version-prefix="test-v" version patch && git push --tags origin main
+      - name: Apply version bump (premajor)
+        if: contains(github.event.pull_request.labels.*.name, 'premajor')
+        run: npm --tag-version-prefix="test-v" version patch && git push --tags origin main
+      - name: Apply version bump (preminor)
+        if: contains(github.event.pull_request.labels.*.name, 'preminor')
+        run: npm --tag-version-prefix="test-v" version preminor && git push --tags origin main
+      - name: Apply version bump (prepatch)
+        if: contains(github.event.pull_request.labels.*.name, 'prepatch')
+        run: npm --tag-version-prefix="test-v" version prepatch && git push --tags origin main
+      - name: Apply version bump (prerelease)
+        if: contains(github.event.pull_request.labels.*.name, 'prerelease')
+        run: npm --tag-version-prefix="test-v" version prerelease && git push --tags origin main
+      - name: Apply version bump (patch)
+        if: contains(github.event.pull_request.labels.*.name, 'patch')
+        run: npm --tag-version-prefix="test-v" version patch && git push --tags origin main
+
+
+
+npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git]
