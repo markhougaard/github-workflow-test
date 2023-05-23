@@ -20,5 +20,10 @@ jobs:
           ls ${{ github.workspace }}
       - name: Commit new file
         run: |
-          git config --global user.email "mark@hougaard.email" && git config --global user.name "Mark Hougaard" && touch test.md && git add . && git commit -m "test.md" && git push
+          git config --global user.name 'MapsPeople A/S'
+          git config --global user.email 'mail@mapspeople.com' 
+          touch test2.md
+          git add .
+          git commit -m 'testing again'
+          git push
       - run: echo "🍏 This job's status is ${{ job.status }}."
