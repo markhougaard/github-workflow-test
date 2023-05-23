@@ -25,7 +25,7 @@ jobs:
           git config --global user.email 'mail@mapspeople.com'
       - name: Apply version bump (major)
         if: contains(github.event.pull_request.labels.*.name, 'major')
-        run: npm --tag-version-prefix="test-v" version major && git add . && git commit -m "Release new major version %s" && git push --tags
+        run: npm --tag-version-prefix="test-v" version major && git add . && git commit -m "Release new major version %s" && git push --tags origin main
       - name: Apply version bump (minor)
         if: contains(github.event.pull_request.labels.*.name, 'minor')
         run: npm --no-git-tag-version version minor -m "Release new minor version %s"
