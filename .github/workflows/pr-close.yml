@@ -16,12 +16,13 @@ jobs:
       token: ${{ secrets.PAT }}
     steps:
       - uses: actions/checkout@v3
-        run: |
-          git config --global user.name 'MapsPeople A/S'
-          git config --global user.email 'mail@mapspeople.com'
       - uses: actions/setup-node@v3
       - name: Build
         run: npm run build
+      - name: Set git config
+        run: |
+          git config --global user.name 'MapsPeople A/S'
+          git config --global user.email 'mail@mapspeople.com'
       - name: Apply version bump (major)
         if: contains(github.event.pull_request.labels.*.name, 'major')
         run: npm --tag-version-prefix="test-v" version major && git add . && git commit -m "Release new major version %s"
