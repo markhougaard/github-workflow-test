@@ -13,7 +13,7 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     env:
-      token: ${{ secrets.PAT }}
+      token: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -25,22 +25,22 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - name: Apply version bump (major)
         if: contains(github.event.pull_request.labels.*.name, 'major')
-        run: npm --tag-version-prefix="test-v" version major -m 'Upgrade to major version %s' && git push --tags origin main
+        run: npm --tag-version-prefix="test-v" version major -m 'Release major version %s' && git push --tags origin main
       - name: Apply version bump (minor)
         if: contains(github.event.pull_request.labels.*.name, 'minor')
-        run: npm --tag-version-prefix="test-v" version minor && git push --tags origin main
+        run: npm --tag-version-prefix="test-v" version minor -m 'Release minor version %s' && git push --tags origin main
       - name: Apply version bump (patch)
         if: contains(github.event.pull_request.labels.*.name, 'patch')
-        run: npm --tag-version-prefix="test-v" version patch && git push --tags origin main
+        run: npm --tag-version-prefix="test-v" version patch -m 'Release patch version %s' && git push --tags origin main
       - name: Apply version bump (premajor)
         if: contains(github.event.pull_request.labels.*.name, 'premajor')
-        run: npm --tag-version-prefix="test-v" version patch && git push --tags origin main
+        run: npm --tag-version-prefix="test-v" version patch -m 'Release premajor version %s' && git push --tags origin main
       - name: Apply version bump (preminor)
         if: contains(github.event.pull_request.labels.*.name, 'preminor')
-        run: npm --tag-version-prefix="test-v" version preminor && git push --tags origin main
+        run: npm --tag-version-prefix="test-v" version preminor -m 'Release preminor version %s' && git push --tags origin main
       - name: Apply version bump (prepatch)
         if: contains(github.event.pull_request.labels.*.name, 'prepatch')
-        run: npm --tag-version-prefix="test-v" version prepatch && git push --tags origin main
+        run: npm --tag-version-prefix="test-v" version prepatch -m 'Release preatch version %s' && git push --tags origin main
       - name: Apply version bump (prerelease)
         if: contains(github.event.pull_request.labels.*.name, 'prerelease')
-        run: npm --tag-version-prefix="test-v" --preid=rc version prerelease && git push --tags origin main
+        run: npm --tag-version-prefix="test-v" --preid=rc version prerelease -m 'Release prerelease version %s' && git push --tags origin main
