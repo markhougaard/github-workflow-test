@@ -34,6 +34,6 @@ jobs:
         run: npm --no-git-tag-version version patch -m "Release new patch version %s"
       - name: Git push version bump
         run: |
-          git push --tags origin main --force
+          git push --tags
       - name: Output version change
         run: npm pkg get version
