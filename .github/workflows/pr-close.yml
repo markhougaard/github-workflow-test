@@ -43,7 +43,4 @@ jobs:
         run: npm --tag-version-prefix="test-v" version prepatch && git push --tags origin main
       - name: Apply version bump (prerelease)
         if: contains(github.event.pull_request.labels.*.name, 'prerelease')
-        run: npm --tag-version-prefix="test-v" version prerelease && git push --tags origin main
-      - name: Apply version bump (patch)
-        if: contains(github.event.pull_request.labels.*.name, 'patch')
-        run: npm --tag-version-prefix="test-v" version patch && git push --tags origin main
+        run: npm --tag-version-prefix="test-v" --preid=rc version prerelease && git push --tags origin main
