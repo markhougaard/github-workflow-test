@@ -19,12 +19,12 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
       - uses: actions/setup-node@v3
-      - name: Set git config
+      - name: Build
+        run: npm run build
+      - name: Set git configs
         run: |
           git config --global user.name 'MapsPeople A/S'
           git config --global user.email 'mail@mapspeople.com'
-      - name: Build
-        run: npm run build
       - name: Apply version bump (major)
         if: contains(github.event.pull_request.labels.*.name, 'major')
         run: npm --no-git-tag-version version major -m "Release new major version %s"
@@ -35,6 +35,8 @@ jobs:
         if: contains(github.event.pull_request.labels.*.name, 'patch')
         run: npm --no-git-tag-version version patch -m "Release new patch version %s"
       - name: Git push version bump
-        run: git push origin main --follow-tags --force
+        run: |
+          git add .
+          git push origin main --force
       - name: Output version change
         run: npm pkg get version
