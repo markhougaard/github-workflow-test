@@ -22,8 +22,8 @@ jobs:
         run: |
           git config --global user.name 'MapsPeople A/S'
           git config --global user.email 'mail@mapspeople.com' 
-          touch test2.md
+          touch test3.md
           git add .
-          git commit -m 'testing again'
+          git commit -m 'testing again 3'
           git push
       - run: echo "🍏 This job's status is ${{ job.status }}."
