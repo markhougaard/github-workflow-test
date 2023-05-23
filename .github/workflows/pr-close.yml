@@ -1,4 +1,4 @@
-name: Run only when merging PRs with label named "minor" or "major"
+name: Run only when merging PRs with label named "minor" or "major".
 
 on:
   pull_request:
