@@ -12,5 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "@mapsindoors/midt": "^18.1.7"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^6.4.0"
   }
 }
