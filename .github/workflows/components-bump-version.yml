@@ -28,10 +28,10 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - name: Major version bump
         if: contains(github.event.pull_request.labels.*.name, 'major')
-        run: npm prefix packages/components version major -m 'Release major version %s' --no-git-tag-version && git push
+        run: npm --prefix=packages/components version major -m 'Release major version %s' --no-git-tag-version && git push
       - name: Minor version bump
         if: contains(github.event.pull_request.labels.*.name, 'minor')
-        run: npm prefix packages/components version minor -m 'Release minor version %s' --no-git-tag-version && git push
+        run: npm --prefix=packages/components version minor -m 'Release minor version %s' --no-git-tag-version && git push
       - name: Patch version bump
         if: contains(github.event.pull_request.labels.*.name, 'patch')
-        run: npm prefix packages/components version patch -m 'Release patch version %s' --no-git-tag-version && git push
+        run: npm --prefix=packages/components version patch -m 'Release patch version %s' --no-git-tag-version && git push
