@@ -1,0 +1,16 @@
+{
+  "name": "github-workflow-test",
+  "version": "5.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo build",
+    "test": "echo test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mapsindoors/midt": "^18.1.7"
+  }
+}
