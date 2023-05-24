@@ -1,4 +1,4 @@
-name: "Bump version when merging Pull Requests with specific labels"
+name: "Bump version when merging Pull Requests with specific labels."
 
 on:
   pull_request:
