@@ -28,7 +28,7 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - name: Major version bump
         if: contains(github.event.pull_request.labels.*.name, 'major')
-        run: npm --cwd=packages/components version major -m 'Release major version %s' --no-git-tag-version && git push origin main
+        run: npm --cwd=packages/components version major -m 'Release major version %s' --no-git-tag-version && git remote set-url origin https://github.com/markhougaard/github-workflow-test.git && git push origin main
       - name: Minor version bump
         if: contains(github.event.pull_request.labels.*.name, 'minor')
         run: npm --cwd=packages/components version minor -m 'Release minor version %s' --no-git-tag-version && git push origin main
