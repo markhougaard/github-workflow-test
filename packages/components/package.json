@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "echo build",
-    "release.major": "npm --tag-version-prefix='components-v' version major -m 'Release major version %s'",
+    "release.major": "npm version major",
     "preversion": "npm run build",
-    "version": "",
-    "postversion": ""
+    "version": "git add . && git commit -m 'Release major version'",
+    "postversion": "cat package.json && git log -n 5 && git push"
   },
   "keywords": [],
   "author": "",
