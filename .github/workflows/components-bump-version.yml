@@ -22,7 +22,7 @@ jobs:
       - uses: actions/setup-node@v3
       - name: Major version bump
         if: contains(github.event.pull_request.labels.*.name, 'major')
-        run: npm run release.major -w components
+        run: npm run release.major -w components && git push origin main
       - name: Minor version bump
         if: contains(github.event.pull_request.labels.*.name, 'minor')
         run: npm -w packages/components version minor -m 'Release minor version %s' --no-git-tag-version && git push
