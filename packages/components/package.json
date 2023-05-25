@@ -8,7 +8,7 @@
     "release.major": "npm --tag-version-prefix='components-v' version major -m 'Release major version %s'",
     "preversion": "npm run build",
     "version": "",
-    "postversion": "cat package.json && git log -3 && git push --follow-tags origin main"
+    "postversion": "cat package.json && git log -3 && git tag -l && git push --follow-tags origin main"
   },
   "keywords": [],
   "author": "",
