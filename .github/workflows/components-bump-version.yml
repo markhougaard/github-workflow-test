@@ -26,7 +26,6 @@ jobs:
         if: contains(github.event.pull_request.labels.*.name, 'major')
         run: |
           npm run release.major -w components
-          echo 'Current git branch at this point:' && git rev-parse --abbrev-ref HEAD && cat packages/components/package.json && git log -n 5 && echo 'tags list:' && git tag -l && echo 'See git status' && git status && echo 'trying to do git push now' && git push --follow-tags origin main --force
       - name: Minor version bump
         if: contains(github.event.pull_request.labels.*.name, 'minor')
         run: npm -w packages/components version minor -m 'Release minor version %s' --no-git-tag-version && git push
