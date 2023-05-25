@@ -24,7 +24,9 @@ jobs:
         run: git config user.name github-actions[bot] && git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - name: Major version bump
         if: contains(github.event.pull_request.labels.*.name, 'major')
-        run: npm run release.major -w components
+        run: |
+          npm run release.major -w components
+          cat package.json && git log -3 && echo 'tags list:' && git tag -l && echo 'trying to do git push now' && git push --follow-tags origin main
       - name: Minor version bump
         if: contains(github.event.pull_request.labels.*.name, 'minor')
         run: npm -w packages/components version minor -m 'Release minor version %s' --no-git-tag-version && git push
