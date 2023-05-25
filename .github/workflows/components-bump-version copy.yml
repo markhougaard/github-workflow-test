@@ -1,0 +1,33 @@
+name: "Bump version when merging Pull Requests with specific labels"
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+    paths:
+      - packages/test2/**
+      - .github/workflows/test2-bump-version.yml
+
+jobs:
+  bump_version:
+    name: "Pull Request Merged"
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    env:
+      token: ${{ secrets.PAT }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Git config
+        run: git config user.name github-actions[bot] && git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      - name: Major version bump
+        if: contains(github.event.pull_request.labels.*.name, 'major')
+        run: npm -w test2 run release -- major
+      - name: Minor version bump
+        if: contains(github.event.pull_request.labels.*.name, 'minor')
+        run: npm -w test2 run release -- minor
+      - name: Patch version bump
+        if: contains(github.event.pull_request.labels.*.name, 'patch')
+        run: npm -w test2 run release -- patch
