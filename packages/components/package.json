@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "echo build",
-    "release.major": "npm version major -m 'Release major version %s' --no-git-tag-version",
+    "release.major": "npm version major -m 'Release major version %s'",
     "preversion": "npm run build",
     "version": "git config user.name github-actions[bot] && git config user.email 41898282+github-actions[bot]@users.noreply.github.com",
     "postversion": "git push && git push --tags"
