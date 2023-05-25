@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "echo build"
+    "build": "echo build",
+    "release.major": "NEW_VERSION=$(npm version major) && git add package.json package-lock.json && git commit -m 'Release version' && git tag $NEW_VERSION && echo 'Bumped version to $NEW_VERSION'"
   },
   "keywords": [],
   "author": "",
