@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "echo build",
-    "release.major": "NEW_VERSION=$(npm version major) && git add package.json package-lock.json && git commit -m 'Release version' && git tag $NEW_VERSION && echo 'Bumped version to $NEW_VERSION'"
+    "release.major": "NEW_VERSION=$(npm version major) && git add package.json package-lock.json && git commit -m 'Release version' && echo 'Bumped version to $NEW_VERSION' && git tag $NEW_VERSION && echo 'Tagged with $NEW_VERSION' && git push && git push --tags"
   },
   "keywords": [],
   "author": "",
