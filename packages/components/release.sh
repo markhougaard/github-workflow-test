@@ -11,6 +11,7 @@ NEW_VERSION=$(npm version $1)
 
 git add package.json package-lock.json
 git commit -m 'Bump version'
-git tag $NEW_VERSION
 echo "Bumped version to $NEW_VERSION"
+git tag $NEW_VERSION
+echo "Tagged with $NEW_VERSION"
 git push && git push --tags
