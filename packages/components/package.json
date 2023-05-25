@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "echo build",
-    "release": "npm run release"
+    "build": "echo build"
   },
   "keywords": [],
   "author": "",
