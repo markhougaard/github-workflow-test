@@ -5,10 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "echo build",
-    "release.major": "npm version major",
-    "preversion": "npm run build",
-    "version": "git add . && git commit -m 'Release major version'",
-    "postversion": "cat package.json && git log -n 5 && git push"
+    "release.major": "npm run release -- major"
   },
   "keywords": [],
   "author": "",
