@@ -7,11 +7,10 @@ then
     exit 1
 fi
 
-NEW_VERSION=$(npm version $1)
-
-git add package.json package-lock.json
-git commit -m 'Bump version'
-echo "Bumped version to $NEW_VERSION"
-git tag $NEW_VERSION
-echo "Tagged with $NEW_VERSION"
+npm version $1
+git add .
+NPM_VERSION=$(npm pkg get version --workspaces=false | tr -d \")
+git commit -m 'Release new version'
+git tag comp-v$NPM_VERSION
+echo "Bumped version to v$NPM_VERSION"
 git push && git push --tags
