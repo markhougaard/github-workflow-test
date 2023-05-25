@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "echo build",
-    "release.major": "npm version major -m 'Release major version %s'",
+    "release.major": "npm version major --no-git-tag-version",
     "preversion": "npm run build",
-    "version": "",
+    "version": "git add . && git commit -m 'Release major version'",
     "postversion": "cat package.json && git log -3 && git push"
   },
   "keywords": [],
