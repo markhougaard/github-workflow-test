@@ -27,7 +27,7 @@ jobs:
         run: npm -w components run release -- major
       - name: Minor version bump
         if: contains(github.event.pull_request.labels.*.name, 'minor')
-        run: npm -w packages/components version minor -m 'Release minor version %s' --no-git-tag-version && git push
+        run: npm -w components run release -- minor
       - name: Patch version bump
         if: contains(github.event.pull_request.labels.*.name, 'patch')
-        run: npm -w packages/components version patch -m 'Release patch version %s' --no-git-tag-version && git push
+        run: npm -w components run release -- patch
