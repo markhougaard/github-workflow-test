@@ -1,6 +1,6 @@
 {
   "name": "components",
-  "version": "5.0.0",
+  "version": "12.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "release.major": "npm version major -m 'Release major version %s'",
     "preversion": "npm run build",
     "version": "",
-    "postversion": "cat package.json && git log -n 10"
+    "postversion": "cat package.json && git log -3 && git add . && git commit -m 'from post release %s' && git push && git checkout main && git push --tags"
   },
   "keywords": [],
   "author": "",
