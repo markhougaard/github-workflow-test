@@ -16,10 +16,12 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     env:
-      token: ${{ secrets.PAT }}
+      token: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
+      - name: Git config
+        run: git config user.name github-actions[bot] && git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - name: Major version bump
         if: contains(github.event.pull_request.labels.*.name, 'major')
         run: npm run release.major -w components
