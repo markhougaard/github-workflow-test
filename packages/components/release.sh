@@ -9,8 +9,8 @@ fi
 
 npm version $1
 git add .
-NPM_VERSION=$(npm pkg get version --workspaces=false | tr -d \")
-git commit -m 'Release new version'
+export NPM_VERSION=$(npm pkg get version --workspaces=false | tr -d \")
+git commit -m 'Release new version: $NPM_VERSION'
 git tag components-v$NPM_VERSION
 echo "Bumped version to v$NPM_VERSION"
 git push && git push --tags
